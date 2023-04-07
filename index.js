@@ -1,4 +1,8 @@
 
+user_score = 0;
+computer_score = 0;
+round = 0;
+
 function getComputerChoice (){
     choices = ['paper','rock','sissors']
     return choices[Math.floor(Math.random()*3)];
@@ -19,28 +23,46 @@ function playRound(playerSelection, computerSelection) {
     }
     //COMPUTER WIN
     if(playerSelection.toLowerCase()== 'rock' && computerSelection == 'paper'){
+        computer_score += 1;
         return "You Lose! Paper beats Rock";
     }
     else if(playerSelection.toLowerCase()== 'sissors' && computerSelection == 'rock'){
+        computer_score += 1;
         return "You Lose! Rock beats sissors";
     }
 
     else if(playerSelection.toLowerCase()== 'paper' && computerSelection == 'sissors'){
+        computer_score += 1;
         return "You Lose! sissors beats paper";
     }
     //USER WIN
     
     else if(playerSelection.toLowerCase()== 'rock' && computerSelection == 'sissors'){
+        user_score += 1;
         return "You Win! Rock beats sissors";
     }
     else if(playerSelection.toLowerCase() == 'sissors' && computerSelection == 'paper'){
-        return "You Win! sissors beats paper"
+        user_score += 1;
+        return "You Win! sissors beats paper";
     }
     else if(playerSelection.toLowerCase() == 'paper' && computerSelection == 'rock'){
-        return "You Win! Paper beats Rock"
+        user_score += 1;
+        return "You Win! Paper beats Rock";
     }
 }
 
-const playerSelection = "sissors";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game(){
+    console.log("Rock paper sissors\n");
+    response = 'y';
+    while (response != 'n'){
+        round +=1;    
+        playerSelection = prompt("Entrer votre choix");
+        computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log("ROUND : "+ round);
+        console.log("===== SCORE ====\n"+"USER = "+user_score+" "+" COMPUTER = "+computer_score);
+        response = prompt("Do you want continu ?\n");
+    }
+}
+
+game();
