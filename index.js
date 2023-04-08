@@ -8,8 +8,6 @@ function getComputerChoice (){
     return choices[Math.floor(Math.random()*3)];
 }
 
-getComputerChoice();
-
 function playRound(playerSelection, computerSelection) {
     /**** NULL */
     if(playerSelection.toLowerCase() === 'paper' && computerSelection == 'paper'){
