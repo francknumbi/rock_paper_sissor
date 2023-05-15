@@ -1,10 +1,21 @@
 
-user_score = 0;
-computer_score = 0;
-round = 0;
+let user_score = 0;
+let computer_score = 0;
+let round = 0;
+/*********** DOM ********/
+
+
+let playerSelection = Array.from(document.getElementsByClassName('choice'));
+let resultElement = document.getElementById('result')
+for (const element of playerSelection) {
+    element.addEventListener('click', (e)=>{
+        resultElement.innerText = playRound(element.textContent, getComputerChoice());
+        //resultElement.textContent = element.textContent;
+    });
+}
 
 function getComputerChoice (){
-    choices = ['paper','rock','sissors']
+    choices = ['paper','rock','sissors'];
     return choices[Math.floor(Math.random()*3)];
 }
 
@@ -63,4 +74,4 @@ function game(){
     }
 }
 
-game();
+//game();
