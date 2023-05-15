@@ -1,18 +1,34 @@
 
 let user_score = 0;
 let computer_score = 0;
-let round = 0;
-/*********** DOM ********/
+let round =0;
 
+let user_score_element = document.getElementById("user_score");
+let computer_score_element = document.getElementById("computer_score");
+let round_element = document.getElementById("round");
+
+console.log("Rock paper sissors\n");
+/*********** DOM ********/
 
 let playerSelection = Array.from(document.getElementsByClassName('choice'));
 let resultElement = document.getElementById('result')
 for (const element of playerSelection) {
-    element.addEventListener('click', (e)=>{
-        resultElement.innerText = playRound(element.textContent, getComputerChoice());
-        //resultElement.textContent = element.textContent;
+    element.addEventListener('click', (e)=> {
+        round +=1;
+        if(user_score >= 5 || computer_score >= 5){
+            if(user_score > computer_score)resultElement.textContent = "USER WIN";
+            else if(computer_score > user_score) resultElement.textContent = "COMPUTER WIN";
+            else resultElement.textContent = "MATCH NULL";
+        }
+        else{
+            resultElement.innerText = playRound(element.textContent, getComputerChoice());
+            user_score_element.textContent = user_score;
+            computer_score_element.textContent = computer_score;
+            round_element.textContent = round;
+        }
     });
 }
+
 
 function getComputerChoice (){
     choices = ['paper','rock','sissors'];
@@ -60,18 +76,5 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(){
-    console.log("Rock paper sissors\n");
-    response = 'y';
-    while (response != 'n'){
-        round +=1;    
-        playerSelection = prompt("Entrer votre choix");
-        computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("ROUND : "+ round);
-        console.log("===== SCORE ====\n"+"USER = "+user_score+" "+" COMPUTER = "+computer_score);
-        response = prompt("Do you want continu ?\n");
-    }
-}
 
 //game();
